@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <canvas id="myball"></canvas>
+    <div>
+        <p>nhấn phím <strong>1</strong> để tăng tốc độ</p>
+        <p>nhấn phím <strong>2</strong> để giảm tốc độ</p>
+    </div>
+   
+</body>
+
+<script>
+    
+
+    var x = 20; //horizonal acoodinate of radius
+    var y = 20; //vertical acoodinate of radius
+    var radius = 30 //length of radius
+    var dx = Math.floor(Math.random() * 10) + 1;//movement horizonal acoodinate of radius
+    var dy = Math.floor(Math.random() * 10) + 1;//movement vertical acoodinate of radius
+    var obj = document.getElementById('myball'); 
+    var ball = obj.getContext("2d");
+    obj.width = window.innerWidth;
+    obj.height = window.innerHeight;
+
+    function create_cirle(){
+        
+        ball.clearRect(0, 0, screen.width, screen.height);
+        ball.beginPath();
+        ball.fillStyle = "red";
+        ball.strokeStyle = "black";
+        ball.arc(x, y, radius, 0,2 * Math.PI, true);
+        ball.closePath();
+        ball.fill();
+        x = x + dx;
+        y = y + dy;
+        if (y<0 || y>window.innerHeight) dy=-dy;
+        if (x<0 || x>window.innerWidth) dx=-dx;
+ 
+       
+    }
+
+    var time = 100; //duration invoke funtion create_cirle
+    var a = setInterval(create_cirle, time);//start creat cirle
+
+    //listen event press keyboard
+    document.addEventListener('keydown', function(event){
+     
+           if (event.which == 97) {
+
+               clearInterval(a);
+               time -= 30;
+               console.log(time);
+               a = setInterval(create_cirle, time);           
+           }
+
+           if (event.which==98) {
+               clearInterval(a);
+               time += 30;
+               console.log(time);
+               a = setInterval(create_cirle, time);
+             
+           } 
+
+    });    
+
+    //listen event resize
+    window.addEventListener('resize', function(){
+       
+        obj.width = window.innerWidth;
+        obj.height = window.innerHeight;  
+
+    });
+
+
+
+   
+   
+</script>
+
+
+
+</html>
