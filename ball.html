@@ -42,8 +42,8 @@
         ball.fill();
         x = x + dx;
         y = y + dy;
-        if (y<0 || y>window.innerHeight) dy=-dy;
-        if (x<0 || x>window.innerWidth) dx=-dx;
+        if (y < 0 || y > window.innerHeight) dy =- dy;
+        if (x < 0 || x > window.innerWidth) dx =- dx;
  
        
     }
@@ -62,7 +62,7 @@
                a = setInterval(create_cirle, time);           
            }
 
-           if (event.which==98) {
+           if (event.which == 98) {
                clearInterval(a);
                time += 30;
                console.log(time);
