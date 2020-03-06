@@ -12,8 +12,8 @@
 
     <canvas id="myball"></canvas>
     <div>
-        <p>nhấn phím <strong>1</strong> để tăng tốc độ</p>
-        <p>nhấn phím <strong>2</strong> để giảm tốc độ</p>
+        <p>press <strong>1</strong> to increase speed</p>
+        <p>press <strong>2</strong> to decrease speed</p>
     </div>
    
 </body>
@@ -54,7 +54,7 @@
     //listen event press keyboard
     document.addEventListener('keydown', function(event){
      
-           if (event.which == 97) {
+           if (event.key == 1) {
 
                clearInterval(a);
                time -= 30;
@@ -62,7 +62,7 @@
                a = setInterval(create_cirle, time);           
            }
 
-           if (event.which == 98) {
+           if (event.key == 2) {
                clearInterval(a);
                time += 30;
                console.log(time);
@@ -75,8 +75,11 @@
     //listen event resize
     window.addEventListener('resize', function(){
        
+        if (x > window.innerWidth ) x = window.innerWidth;
+        if (y > window.innerHeight ) y = window.innerHeight;
         obj.width = window.innerWidth;
         obj.height = window.innerHeight;  
+       
 
     });
 
